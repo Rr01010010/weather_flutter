@@ -23,7 +23,6 @@ class API {
   //}
 
   Future<WeatherCityData?> weatherForecast(CityData cityData) async {
-
     var result = await dio.get("$path/onecall", queryParameters: {
       'appid': "9d3fc8f5207bebd31d456937534abae6",
       'lat': '${cityData.coord.lat}',
@@ -54,18 +53,20 @@ class API {
   }
 
   Future<CityData?> searchCity(String city) async {
-    var result = await dio.get("$path/weather", queryParameters: {
-      'appid': "9d3fc8f5207bebd31d456937534abae6",
-      'q': city
-    });
+    try {
+      var result = await dio.get("$path/weather", queryParameters: {
+        'appid': "9d3fc8f5207bebd31d456937534abae6",
+        'q': city
+      });
 
-    if (result.statusCode == 200) {
-      // print("DATA : ${result.data}");
-      return CityData.fromJson(result.data);
-    } else {
-      print("STATUS CODE : ${result.statusCode}");
-      return null;
-    }
+      if (result.statusCode == 200) {
+        // print("DATA : ${result.data}");
+        return CityData.fromJson(result.data);
+      } else {
+        print("STATUS CODE : ${result.statusCode}");
+      }
+    } catch (e, st) {}
+    return null;
   }
 }
 //9d3fc8f5207bebd31d456937534abae6

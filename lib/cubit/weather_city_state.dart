@@ -1,34 +1,30 @@
 part of 'weather_city_cubit.dart';
 
-abstract class WeatherCityState extends Equatable {
-  const WeatherCityState();
+abstract class WeatherState extends Equatable {
+  const WeatherState();
 }
 
-class WeatherCityInitial extends WeatherCityState {
-  WeatherCityInitial() {
-    //(await SharedPreferences.getInstance()).
-  }
+class InitialState extends WeatherState {
   @override
   List<Object> get props => [];
 }
-class NonCity extends WeatherCityState {
+class ErrorState extends WeatherState {
+  Object error;
+  ErrorState({required this.error});
+
   @override
   List<Object> get props => [];
 }
-class CityFounded extends WeatherCityState {
-  CityFounded({this.weatherCityData,this.cityData});
-  WeatherCityData? weatherCityData;
-  CityData? cityData;
-
+class LoadingState extends WeatherState {
   @override
-  List<Object?> get props => [cityData, weatherCityData];
+  List<Object> get props => [];
 }
-class WeatherOfCity extends WeatherCityState {
-  WeatherOfCity({this.weatherCityData,this.cityData});
-  WeatherCityData? weatherCityData;
+class WeatherOfCity extends WeatherState {
+  WeatherOfCity({this.weatherData,this.cityData});
+  WeatherCityData? weatherData;
   CityData? cityData;
 
 
   @override
-  List<Object?> get props => [cityData, weatherCityData];
+  List<Object?> get props => [cityData, weatherData];
 }

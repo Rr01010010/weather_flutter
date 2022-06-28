@@ -31,7 +31,7 @@ class CitySelection extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.search),
               onPressed: () async {
-                BlocProvider.of<WeatherCityCubit>(context)
+                BlocProvider.of<WeatherCubit>(context)
                     .searchCity(_textController.text);
                 // if (await BlocProvider.of<WeatherCityCubit>(context)
                 //     .searchCity(_textController.text)) {//return true, if query success

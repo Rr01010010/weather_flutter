@@ -41,11 +41,13 @@ class WeatherCityData {
         timezoneOffset: json["timezone_offset"],
         current: Current.fromJson(json["current"]),
         minutely: List<Minutely>.from(
-            json["minutely"].map((x) => Minutely.fromJson(x))),
-        hourly:
-            List<Current>.from(json["hourly"].map((x) => Current.fromJson(x))),
-        daily: List<Daily>.from(json["daily"].map((x) => Daily.fromJson(x))),
-        alerts: List<Alert>.from(json["alerts"]?.map((x) => Alert.fromJson(x)) ?? []),
+            json["minutely"]?.map((x) => Minutely.fromJson(x)) ?? []),
+        hourly: List<Current>.from(
+            json["hourly"]?.map((x) => Current.fromJson(x)) ?? []),
+        daily: List<Daily>.from(
+            json["daily"]?.map((x) => Daily.fromJson(x)) ?? []),
+        alerts: List<Alert>.from(
+            json["alerts"]?.map((x) => Alert.fromJson(x)) ?? []),
       );
 
   Map<String, dynamic> toJson() => {
@@ -138,10 +140,8 @@ class Current {
 
   factory Current.fromJson(Map<String, dynamic> json) => Current(
         dt: json["dt"],
-        sunrise:
-            json["sunrise"] == null ? -999 : json["sunrise"],
-        sunset:
-            json["sunset"] == null ? -999 : json["sunset"],
+        sunrise: json["sunrise"] == null ? -999 : json["sunrise"],
+        sunset: json["sunset"] == null ? -999 : json["sunset"],
         temp: json["temp"].toDouble(),
         feelsLike: json["feels_like"].toDouble(),
         pressure: json["pressure"],
@@ -317,7 +317,9 @@ class Daily {
             List<Weather>.from(json["weather"].map((x) => Weather.fromJson(x))),
         clouds: json["clouds"],
         pop: json["pop"].toDouble(),
-        rain: json["rain"] == null ? double.negativeInfinity : json["rain"].toDouble(),
+        rain: json["rain"] == null
+            ? double.negativeInfinity
+            : json["rain"].toDouble(),
         uvi: json["uvi"].toDouble(),
       );
 

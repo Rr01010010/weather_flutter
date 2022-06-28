@@ -21,7 +21,7 @@ class WeatherAppView extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       home: BlocProvider(
-        create: (context) => WeatherCityCubit(),
+        create: (context) => WeatherCubit(),
         child: const WeatherPage(),
       ),
     );

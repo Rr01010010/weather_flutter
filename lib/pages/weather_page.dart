@@ -25,13 +25,16 @@ class WeatherPage extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: BlocBuilder<WeatherCityCubit, WeatherCityState>(
+        child: BlocBuilder<WeatherCubit, WeatherState>(
           builder: (context, state) {
             switch (state.runtimeType) {
-              case NonCity:
+              case InitialState:
                 return const Text('Please Select a Location');
-              case WeatherCityInitial:
+              case LoadingState:
                 return const CircularProgressIndicator();
+              case ErrorState:
+                return Text((state as ErrorState).error.toString(),
+                    style: const TextStyle(color: Colors.red));
               case WeatherOfCity:
                 var data = (state as WeatherOfCity);
                 return Container(
@@ -55,8 +58,6 @@ class WeatherPage extends StatelessWidget {
                     ],
                   ),
                 );
-              case CityFounded:
-                break;
             }
             return const SizedBox();
           },
@@ -67,7 +68,7 @@ class WeatherPage extends StatelessWidget {
         onPressed: () async {
           await Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => BlocProvider.value(
-                value: BlocProvider.of<WeatherCityCubit>(context),
+                value: BlocProvider.of<WeatherCubit>(context),
                 child: CitySelection()),
           ));
           //await context.read<WeatherCubit>().fetchWeather(city);

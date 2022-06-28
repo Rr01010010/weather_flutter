@@ -21,21 +21,21 @@ class CombinedWeatherTemperature extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Temperature(
-              temperature: weather.weatherCityData!.current.temp,
+              temperature: weather.weatherData!.current.temp,
             ),
             const SizedBox(width: 10),
             WeatherConditions(
                 condition:
-                    weather.weatherCityData?.current.weather[0].description ??
+                    weather.weatherData?.current.weather[0].description ??
                         Description.NONE),
           ],
         ),
         Center(
           child: Text(
             descriptionValues.reverseMap?[
-                    weather.weatherCityData?.current.weather[0].description ??
+                    weather.weatherData?.current.weather[0].description ??
                         Description.NONE] ??
-                (weather.weatherCityData?.current.weather[0].description.name ??
+                (weather.weatherData?.current.weather[0].description.name ??
                     ""),
             style: const TextStyle(
               fontSize: 30,

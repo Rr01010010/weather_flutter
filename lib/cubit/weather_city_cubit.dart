@@ -6,24 +6,30 @@ import 'package:flutter_weather/models/weather_data.dart';
 
 part 'weather_city_state.dart';
 
-class WeatherCityCubit extends Cubit<WeatherCityState> {
-  WeatherCityCubit() : super(WeatherCityInitial());
+class WeatherCubit extends Cubit<WeatherState> {
+  WeatherCubit() : super(InitialState());
 
   Future<void> searchCity(String nameCity) async {
-    emit(WeatherCityInitial());
+    emit(LoadingState());
     try {
       var city = await API().searchCity(nameCity);
       if (city != null) {
         WeatherCityData? weather = await API().weatherForecast(city);
         if (weather != null) {
-          emit(WeatherOfCity(weatherCityData: weather, cityData: city));
+          emit(WeatherOfCity(weatherData: weather, cityData: city));
         } else {
-          emit(CityFounded(weatherCityData: weather, cityData: city));
+          throw Exception("Не найдено данных о погоде в городе");
         }
       }
+      else {
+        throw Exception("Город не найден");
+      }
     } catch (e, trace) {
-      //emit(ErrorState());
-      rethrow;
+      // print(trace);
+      print(e);
+      print(e.runtimeType);
+      emit(ErrorState(error: e));
+      //rethrow;
     }
 
   }
