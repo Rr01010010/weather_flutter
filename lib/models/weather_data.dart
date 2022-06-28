@@ -140,8 +140,8 @@ class Current {
 
   factory Current.fromJson(Map<String, dynamic> json) => Current(
         dt: json["dt"],
-        sunrise: json["sunrise"] == null ? -999 : json["sunrise"],
-        sunset: json["sunset"] == null ? -999 : json["sunset"],
+        sunrise: json["sunrise"] ?? -999,
+        sunset: json["sunset"] ?? -999,
         temp: json["temp"].toDouble(),
         feelsLike: json["feels_like"].toDouble(),
         pressure: json["pressure"],
@@ -181,9 +181,8 @@ class Current {
         "wind_deg": windDeg,
         "weather": List<dynamic>.from(weather.map((x) => x.toJson())),
         "wind_gust": windGust == double.negativeInfinity ? null : windGust,
-        "pop": pop == null ? double.negativeInfinity : pop.toDouble(),
-        "rain":
-            rain == null ? Rain(the1H: double.negativeInfinity) : rain.toJson(),
+        "pop": pop.toDouble(),
+        "rain": rain.toJson(),
       };
 }
 

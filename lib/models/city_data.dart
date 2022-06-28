@@ -56,7 +56,7 @@ class CityData {
   );
 
   Map<String, dynamic> toJson() => {
-    "coord": coord == null ? null : coord.toJson(),
+    "coord": coord.toJson(),
     "weather": weather == null ? null : List<dynamic>.from(weather!.map((x) => x.toJson())),
     "base": base,
     "main": main == null ? null : main!.toJson(),

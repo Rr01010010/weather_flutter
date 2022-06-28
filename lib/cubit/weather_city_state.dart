@@ -9,8 +9,8 @@ class InitialState extends WeatherState {
   List<Object> get props => [];
 }
 class ErrorState extends WeatherState {
-  Object error;
-  ErrorState({required this.error});
+  final Object error;
+  const ErrorState({required this.error});
 
   @override
   List<Object> get props => [];
@@ -20,9 +20,9 @@ class LoadingState extends WeatherState {
   List<Object> get props => [];
 }
 class WeatherOfCity extends WeatherState {
-  WeatherOfCity({this.weatherData,this.cityData});
-  WeatherCityData? weatherData;
-  CityData? cityData;
+  const WeatherOfCity({this.weatherData,this.cityData});
+  final WeatherCityData? weatherData;
+  final CityData? cityData;
 
 
   @override

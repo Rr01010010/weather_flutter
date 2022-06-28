@@ -25,11 +25,9 @@ class WeatherCubit extends Cubit<WeatherState> {
         throw Exception("Город не найден");
       }
     } catch (e, trace) {
-      // print(trace);
+      print(trace);
       print(e);
-      print(e.runtimeType);
       emit(ErrorState(error: e));
-      //rethrow;
     }
 
   }

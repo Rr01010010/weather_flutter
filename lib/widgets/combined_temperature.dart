@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather/cubit/weather_city_cubit.dart';
 import 'package:flutter_weather/models/weather_data.dart';
-import 'package:flutter_weather/models/weather_models.dart';
-import 'package:flutter_weather/widgets/WeatherConditions.dart';
 import 'package:flutter_weather/widgets/temperature.dart';
+import 'package:flutter_weather/widgets/weather_conditions.dart';
 
 class CombinedWeatherTemperature extends StatelessWidget {
   final WeatherOfCity weather;
